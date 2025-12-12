@@ -16,7 +16,7 @@ This Jenkinsfile defines the automated release process for the project, followin
 
 The pipeline accepts a single build parameter:
 
-- **`BUMP`**: Determines the type of version increment.
+- **`BUMP`**: Determines which part of the semantic version (`MAJOR.MINOR.PATCH`) to increment.
   - `X`: **Major** version bump (e.g., 1.0.0 -> 2.0.0)
   - `Y`: **Minor** version bump (e.g., 1.0.0 -> 1.1.0)
   - `Z`: **Patch** version bump (e.g., 1.0.0 -> 1.0.1)
