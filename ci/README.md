@@ -2,6 +2,10 @@
 
 This directory contains the Continuous Integration and Continuous Deployment (CI/CD) pipelines used for this project.
 
+## Table of Contents
+
+- [Release Pipeline (`release.Jenkinsfile`)](#release-pipeline-releasejenkinsfile)
+
 ## Pipelines
 
 ### Release Pipeline (`release.Jenkinsfile`)
