@@ -12,7 +12,7 @@ This repository contains the **Infrastructure as Code (IaC)** required to provis
 
 The primary objective is to facilitate the deployment of a SaaS backend on **Amazon ECS (Elastic Container Service)**. The infrastructure is designed to be modular, secure, and fully automated.
 
-## 📂 Repository Structure
+## Repository Structure
 
 The project is organized into several key directories, each with its own specific documentation:
 
@@ -23,7 +23,7 @@ The project is organized into several key directories, each with its own specifi
 | **`ci/`**                | Jenkins pipelines managing the release lifecycle and versioning (Gitflow).                  | [View Documentation](./ci/README.md)                |
 | **`.github/workflows/`** | GitHub Actions workflows for continuous integration (Format, Validate) and GitHub Releases. | [View Documentation](./.github/workflows/README.md) |
 
-## 🚀 Features
+### Features
 
 - **Modular Architecture**: Leveraging Terraform modules to create reusable components (currently featuring a robust VPC implementation).
 - **Automated Quality Checks**:
@@ -32,17 +32,17 @@ The project is organized into several key directories, each with its own specifi
 - **Release Automation**:
   - **Gitflow Strategy**: Automated version bumping, tagging, and changelog generation using Jenkins and GitHub Actions.
 
-## 🛠️ Getting Started
+### Getting Started
 
 To get started with provisioning the infrastructure:
 
 1.  Navigate to the **Terraform** directory.
 2.  Follow the instructions in the [Terraform README](./terraform/README.md) to initialize and plan your deployment.
 
-## ✨ Credits
+## Credits
 
 **Pablo Sierra** - _Initial work & Maintenance_ - [sierrapablo](https://github.com/sierrapablo)
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE) file for details.
