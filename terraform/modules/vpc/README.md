@@ -50,12 +50,12 @@ module "vpc" {
 
 ## Inputs
 
-| Name                    | Type           | Key      | Description                                                |
-| ----------------------- | -------------- | -------- | ---------------------------------------------------------- |
-| `vpc_cidr`              | `string`       | Optional | CIDR block for the VPC. Default: `10.0.0.0/16`.            |
-| `availability_zones`    | `list(string)` | Required | List of Availability Zones for public and private subnets. |
-| `public_subnets_cidrs`  | `list(string)` | Required | List of CIDR blocks for public subnets (one per AZ).       |
-| `private_subnets_cidrs` | `list(string)` | Required | List of CIDR blocks for private subnets (one per AZ).      |
+| Name                    | Type           | Description                                                                |
+| ----------------------- | -------------- | -------------------------------------------------------------------------- |
+| `vpc_cidr`              | `string`       | Optional. CIDR block for the VPC. Default: `10.0.0.0/16`.            |
+| `availability_zones`    | `list(string)` | Required. List of Availability Zones for public and private subnets. |
+| `public_subnets_cidrs`  | `list(string)` | Required. List of CIDR blocks for public subnets (one per AZ).       |
+| `private_subnets_cidrs` | `list(string)` | Required. List of CIDR blocks for private subnets (one per AZ).      |
 
 ## Outputs
 
