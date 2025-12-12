@@ -41,10 +41,10 @@ The module can be used as follows:
 module "vpc" {
   source = "./modules/vpc"
 
-  vpc_cidr             = "10.0.0.0/16" # Optional, default: "10.0.0.0/16"
-  availability_zones   = ["zone1", "zone2", "..."] # Required. Example: ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
-  public_subnets_cidrs = ["10.0.1.0/24", "10.0.2.0/24"] # Required
-  private_subnets_cidrs = ["10.0.3.0/24", "10.0.4.0/24"] # Required
+  vpc_cidr              = "10.0.0.0/16"
+  availability_zones    = ["eu-west-1a", "eu-west-1b"]
+  public_subnets_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
+  private_subnets_cidrs = ["10.0.11.0/24", "10.0.12.0/24"]
 }
 ```
 
