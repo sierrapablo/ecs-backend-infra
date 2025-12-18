@@ -1,24 +1,27 @@
-output "vpc_id" {
-  description = "ID of the VPC"
-  value       = aws_vpc.main.id
-}
-
-output "public_subnet_ids" {
-  description = "List of public subnet IDs"
+# Subnets
+output "public_subnets" {
+  description = "Lista de subnets públicas"
   value       = aws_subnet.public[*].id
 }
 
-output "private_subnet_ids" {
-  description = "List of private subnet IDs"
+output "private_subnets" {
+  description = "Lista de subnets privadas"
   value       = aws_subnet.private[*].id
 }
 
-output "igw_id" {
-  description = "Internet Gateway ID"
-  value       = aws_internet_gateway.main.id
+# Security groups
+output "alb_sg_id" {
+  description = "Security Group para el ALB"
+  value       = aws_security_group.alb.id
 }
 
-output "nat_gateway_ids" {
-  description = "List of NAT Gateway IDs"
-  value       = aws_nat_gateway.main[*].id
+output "ecs_sg_id" {
+  description = "Security Group para ECS tasks"
+  value       = aws_security_group.ecs.id
+}
+
+# VPC ID
+output "vpc_id" {
+  description = "ID de la VPC"
+  value       = aws_vpc.main.id
 }
