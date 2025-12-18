@@ -1,5 +1,23 @@
 # AWS region to deploy the infrastructure
-aws_region  = "us-east-1"
+aws_region = "eu-west-1"
 
 # AWS CLI profile to use
-aws_profile = "default"
+aws_profile = "sierrapablo"
+
+# Prefix for the resources
+name_prefix = "api-backend"
+
+# Environment
+env = "dev" # dev, test, prod
+
+# Retention in days for the logs
+retention_in_days = 14
+
+# ARN of the ECR Repository
+ecr_arn = "your-ecr-arn.amazonaws.com"
+
+# Domain name for the ALB
+domain_name = "api.mydomain.com"
+
+# Hosted zone ID
+hosted_zone_id = "your-hosted-zone-id"

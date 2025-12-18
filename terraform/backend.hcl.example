@@ -1,0 +1,11 @@
+bucket = ""
+key    = ""
+region = ""
+
+endpoints = {
+  s3 = ""
+}
+
+access_key = ""
+secret_key = ""
+profile    = ""
