@@ -19,6 +19,12 @@ variable "localstack_dummy" {
   default     = "test"
 }
 
+variable "use_localstack" {
+  type        = bool
+  description = "Use Localstack"
+  default     = true
+}
+
 variable "name_prefix" {
   type        = string
   description = "Prefix for the resources"
