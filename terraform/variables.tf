@@ -8,6 +8,17 @@ variable "aws_profile" {
   description = "AWS CLI profile to use"
 }
 
+variable "localstack_endpoint" {
+  type        = string
+  description = "Localstack endpoint"
+}
+
+variable "localstack_dummy" {
+  type        = string
+  description = "Localstack dummy"
+  default     = "test"
+}
+
 variable "name_prefix" {
   type        = string
   description = "Prefix for the resources"
