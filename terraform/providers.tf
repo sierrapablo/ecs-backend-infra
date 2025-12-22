@@ -14,14 +14,14 @@ provider "aws" {
   skip_requesting_account_id  = true
 
   endpoints {
-    ecs = var.localstack_endpoint
-    iam = var.localstack_endpoint
-    logs = var.localstack_endpoint
+    ecs     = var.localstack_endpoint
+    iam     = var.localstack_endpoint
+    logs    = var.localstack_endpoint
     route53 = var.localstack_endpoint
-    ec2 = var.localstack_endpoint
-    elbv2 = var.localstack_endpoint
-    acm = var.localstack_endpoint
-    sts = var.localstack_endpoint
+    ec2     = var.localstack_endpoint
+    elbv2   = var.localstack_endpoint
+    acm     = var.localstack_endpoint
+    sts     = var.localstack_endpoint
   }
 }
 

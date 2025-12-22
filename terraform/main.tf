@@ -14,7 +14,7 @@ module "vpc" {
 
 # IAM module
 module "iam" {
-  source      = "./modules/iam"
+  source = "./modules/iam"
 
   providers = {
     aws = var.use_localstack ? aws.localstack : aws
@@ -73,7 +73,7 @@ module "ecs_task" {
 
 # ALB module
 module "alb_https" {
-  source            = "./modules/alb-https-route53"
+  source = "./modules/alb-https-route53"
 
   providers = {
     aws = var.use_localstack ? aws.localstack : aws
@@ -93,7 +93,7 @@ module "alb_https" {
 
 # ECS Service module
 module "ecs_service" {
-  source               = "./modules/ecs-service"
+  source = "./modules/ecs-service"
 
   providers = {
     aws = var.use_localstack ? aws.localstack : aws
