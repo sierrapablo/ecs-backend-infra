@@ -4,6 +4,8 @@ provider "aws" {
 }
 
 provider "aws" {
+  alias = "localstack"
+
   region                      = var.aws_region
   access_key                  = var.localstack_dummy
   secret_key                  = var.localstack_dummy
