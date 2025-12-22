@@ -2,6 +2,10 @@
 module "vpc" {
   source = "./modules/vpc"
 
+  providers = {
+    aws = var.use_localstack ? aws.localstack : aws
+  }
+
   vpc_cidr              = "10.0.0.0/16"
   availability_zones    = ["eu-west-1a", "eu-west-1b"]
   public_subnets_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
@@ -11,6 +15,11 @@ module "vpc" {
 # IAM module
 module "iam" {
   source      = "./modules/iam"
+
+  providers = {
+    aws = var.use_localstack ? aws.localstack : aws
+  }
+
   name_prefix = var.name_prefix
 
 }
@@ -19,12 +28,20 @@ module "iam" {
 module "ecs_cluster" {
   source = "./modules/ecs-cluster"
 
+  providers = {
+    aws = var.use_localstack ? aws.localstack : aws
+  }
+
   name = "${var.name_prefix}-ecs-cluster"
 }
 
 # Logs module
 module "logs_app" {
   source = "./modules/logs"
+
+  providers = {
+    aws = var.use_localstack ? aws.localstack : aws
+  }
 
   log_group_name    = "/ecs/${var.name_prefix}"
   retention_in_days = var.retention_in_days
@@ -38,6 +55,10 @@ module "logs_app" {
 # ECS Task module
 module "ecs_task" {
   source = "./modules/ecs-task"
+
+  providers = {
+    aws = var.use_localstack ? aws.localstack : aws
+  }
 
   family = "${var.name_prefix}-ecs-task"
 
@@ -53,6 +74,11 @@ module "ecs_task" {
 # ALB module
 module "alb_https" {
   source            = "./modules/alb-https-route53"
+
+  providers = {
+    aws = var.use_localstack ? aws.localstack : aws
+  }
+
   name              = "${var.name_prefix}-alb"
   subnets           = module.vpc.public_subnets
   security_groups   = [module.vpc.alb_sg_id]
@@ -68,6 +94,11 @@ module "alb_https" {
 # ECS Service module
 module "ecs_service" {
   source               = "./modules/ecs-service"
+
+  providers = {
+    aws = var.use_localstack ? aws.localstack : aws
+  }
+
   name                 = "${var.name_prefix}-ecs-service"
   cluster_id           = module.ecs_cluster.id
   task_definition      = module.ecs_task.arn
