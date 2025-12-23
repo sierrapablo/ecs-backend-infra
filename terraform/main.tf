@@ -2,10 +2,6 @@
 module "vpc" {
   source = "./modules/vpc"
 
-  providers = {
-    aws = var.use_localstack ? aws.localstack : aws
-  }
-
   vpc_cidr              = "10.0.0.0/16"
   availability_zones    = ["eu-west-1a", "eu-west-1b"]
   public_subnets_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
@@ -16,10 +12,6 @@ module "vpc" {
 module "iam" {
   source = "./modules/iam"
 
-  providers = {
-    aws = var.use_localstack ? aws.localstack : aws
-  }
-
   name_prefix = var.name_prefix
 
 }
@@ -28,20 +20,12 @@ module "iam" {
 module "ecs_cluster" {
   source = "./modules/ecs-cluster"
 
-  providers = {
-    aws = var.use_localstack ? aws.localstack : aws
-  }
-
   name = "${var.name_prefix}-ecs-cluster"
 }
 
 # Logs module
 module "logs_app" {
   source = "./modules/logs"
-
-  providers = {
-    aws = var.use_localstack ? aws.localstack : aws
-  }
 
   log_group_name    = "/ecs/${var.name_prefix}"
   retention_in_days = var.retention_in_days
@@ -56,10 +40,6 @@ module "logs_app" {
 module "ecs_task" {
   source = "./modules/ecs-task"
 
-  providers = {
-    aws = var.use_localstack ? aws.localstack : aws
-  }
-
   family = "${var.name_prefix}-ecs-task"
 
   image = "${var.ecr_arn}/${var.name_prefix}-image:placeholder" # Placeholder, solo levanta infraestructura
@@ -72,12 +52,8 @@ module "ecs_task" {
 }
 
 # ALB module
-module "alb_https" {
-  source = "./modules/alb-https-route53"
-
-  providers = {
-    aws = var.use_localstack ? aws.localstack : aws
-  }
+module "alb" {
+  source = "./modules/alb-localstack" # "./modules/alb-https-route53" Para AWS real
 
   name              = "${var.name_prefix}-alb"
   subnets           = module.vpc.public_subnets
@@ -85,7 +61,7 @@ module "alb_https" {
   vpc_id            = module.vpc.vpc_id
   target_group_name = "${var.name_prefix}-tg"
   target_port       = 80
-  health_check_path = "/health"
+  protocol          = "HTTP"
   domain_name       = var.domain_name
   hosted_zone_id    = var.hosted_zone_id
   tags              = { env = var.env }
@@ -95,16 +71,12 @@ module "alb_https" {
 module "ecs_service" {
   source = "./modules/ecs-service"
 
-  providers = {
-    aws = var.use_localstack ? aws.localstack : aws
-  }
-
   name                 = "${var.name_prefix}-ecs-service"
   cluster_id           = module.ecs_cluster.id
   task_definition      = module.ecs_task.arn
-  desired_count        = 2
+  desired_count        = 0
   subnets              = module.vpc.private_subnets
   security_groups      = [module.vpc.ecs_sg_id]
   assign_public_ip     = false
-  alb_target_group_arn = module.alb_https.target_group_arn
+  alb_target_group_arn = module.alb.alb_arn
 }
